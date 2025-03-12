@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 
-interface DinorButtonProps {
+interface DnorButtonProps {
   title?: string;
   variant?: "primary-filled" | "secondary-filled";
   size?: "tiny" | "small" | "medium" | "large" | "huge";
@@ -8,7 +8,7 @@ interface DinorButtonProps {
   children?: React.ReactNode;
 }
 
-export const DinorButton: React.FC<DinorButtonProps> = ({
+export const DnorButton: FC<DnorButtonProps> = ({
   title,
   variant,
   size,

@@ -1,0 +1,73 @@
+$primary-color: #282c34;
+$text-color: white;
+$accent-color: #61dafb;
+$spacing-unit: 20px;
+
+@mixin flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
+  background-color: $primary-color;
+
+  &-main {
+    @include flex-center;
+    height: 100vh;
+    font-size: calc(10px + 2vmin);
+    color: $text-color;
+    padding: $spacing-unit;
+  }
+
+  .card-content {
+    padding: $spacing-unit;
+
+    p {
+      color: $primary-color;
+      font-size: 16px;
+      margin-bottom: $spacing-unit;
+    }
+
+    .animated-logo {
+      width: 60px;
+      height: 60px;
+      background-color: $accent-color;
+      border-radius: 50%;
+      margin: 0 auto;
+      animation: App-logo-spin infinite 3s linear;
+      margin-bottom: $spacing-unit;
+    }
+
+    .sub-grid-item {
+      background-color: lighten($primary-color, 60%);
+      border-radius: 8px;
+      padding: 10px;
+      margin: 5px;
+      font-size: 14px;
+      color: $primary-color;
+      border: 1px solid $accent-color;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: lighten($accent-color, 30%);
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
