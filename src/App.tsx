@@ -64,7 +64,27 @@ function App() {
     },
   });
 
-  // Type assertion to ensure rows values match the expected Grid component types
+  const componentControls = useControls("Component Properties", {
+    cardTitle: {
+      value: "I am a dnor card",
+      label: "Card Title",
+    },
+    buttonVariant: {
+      value: "primary-filled",
+      options: ["primary-filled", "secondary-filled"],
+      label: "Button Variant",
+    },
+    buttonTitle: {
+      value: "Click me i'm a dnor button",
+      label: "Button Title",
+    },
+    buttonSize: {
+      value: "large",
+      options: ["tiny", "small", "medium", "large", "huge"],
+      label: "Button Size",
+    },
+  });
+
   const mainGridRows = gridControls.rows as 2 | 4 | 6 | 8;
   const nestedGridRows = nestedGridControls.rows as 2 | 4 | 6 | 8;
 
@@ -73,7 +93,7 @@ function App() {
       <main className="App-main">
         <DnorGrid rows={mainGridRows}>
           <DnorGridItem colStart={6} colSpan={2} rowStart={1} rowSpan={2}>
-            <div>This is a dnor component header</div>
+            <div>This is a DNOR Web components demo</div>
           </DnorGridItem>
           <DnorGridItem
             colStart={1}
@@ -81,7 +101,7 @@ function App() {
             rowStart={3}
             rowSpan={gridControls.mainCardRowSpan}
           >
-            <DnorCard title="I am a dnor card">
+            <DnorCard title={componentControls.cardTitle}>
               <div className="card-content">
                 <p>DNOR content</p>
                 <div className="animated-logo">DN</div>
@@ -122,8 +142,19 @@ function App() {
           >
             <DnorButton
               title="Click me i'm a dnor button"
-              variant="primary-filled"
-              size="large"
+              variant={
+                componentControls.buttonVariant as
+                  | "primary-filled"
+                  | "secondary-filled"
+              }
+              size={
+                componentControls.buttonSize as
+                  | "tiny"
+                  | "small"
+                  | "medium"
+                  | "large"
+                  | "huge"
+              }
             ></DnorButton>
           </DnorGridItem>
         </DnorGrid>
