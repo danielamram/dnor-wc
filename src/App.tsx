@@ -7,11 +7,6 @@ import "./styles/App.scss";
 
 function App() {
   const gridControls = useControls("Main Grid", {
-    rows: {
-      value: 6 as 2 | 4 | 6 | 8,
-      options: [2, 4, 6, 8],
-      label: "Grid Rows",
-    },
     mainCardColSpan: {
       value: 6,
       min: 1,
@@ -19,12 +14,12 @@ function App() {
       step: 1,
       label: "Main Card Column Span",
     },
-    mainCardRowSpan: {
-      value: 4,
+    buttonRowStart: {
+      value: 5,
       min: 1,
-      max: 8,
+      max: 12,
       step: 1,
-      label: "Main Card Row Span",
+      label: "Button Row Start",
     },
     buttonColSpan: {
       value: 5,
@@ -66,7 +61,7 @@ function App() {
 
   const componentControls = useControls("Component Properties", {
     cardTitle: {
-      value: "I am a dnor card",
+      value: "I am a dnor card title",
       label: "Card Title",
     },
     buttonVariant: {
@@ -85,63 +80,73 @@ function App() {
     },
   });
 
-  const mainGridRows = gridControls.rows as 2 | 4 | 6 | 8;
   const nestedGridRows = nestedGridControls.rows as 2 | 4 | 6 | 8;
 
   return (
     <div className="App">
       <main className="App-main">
-        <DnorGrid rows={mainGridRows}>
-          <DnorGridItem colStart={6} colSpan={2} rowStart={1} rowSpan={2}>
-            <div>This is a DNOR Web components demo</div>
+        <DnorGrid rows={6}>
+          <DnorGridItem colStart={4} colSpan={6} rowStart={1} rowSpan={1}>
+            <div className="page-title">
+              <h1>DNOR Web Components Demo</h1>
+              <p className="subtitle">
+                Explore our component library with interactive controls
+              </p>
+            </div>
           </DnorGridItem>
           <DnorGridItem
             colStart={1}
             colSpan={gridControls.mainCardColSpan}
-            rowStart={3}
-            rowSpan={gridControls.mainCardRowSpan}
+            rowStart={2}
+            rowSpan={4}
           >
             <DnorCard title={componentControls.cardTitle}>
-              <div className="card-content">
-                <p>DNOR content</p>
-                <div className="animated-logo">DN</div>
-                <DnorGrid rows={nestedGridRows}>
-                  <DnorGridItem
-                    colStart={1}
-                    colSpan={nestedGridControls.item1ColSpan}
-                    rowStart={1}
-                    rowSpan={2}
-                  >
-                    <div className="sub-grid-item">Sub-grid item 1</div>
-                  </DnorGridItem>
-                  <DnorGridItem
-                    colStart={1}
-                    colSpan={nestedGridControls.item2ColSpan}
-                    rowStart={3}
-                    rowSpan={2}
-                  >
-                    <div className="sub-grid-item">Sub-grid item 2</div>
-                  </DnorGridItem>
-                  <DnorGridItem
-                    colStart={nestedGridControls.item2ColSpan + 1}
-                    colSpan={nestedGridControls.item3ColSpan}
-                    rowStart={3}
-                    rowSpan={2}
-                  >
-                    <div className="sub-grid-item">Sub-grid item 3</div>
-                  </DnorGridItem>
-                </DnorGrid>
-              </div>
+              <div className="animated-logo">DN</div>
+              <DnorGrid rows={nestedGridRows}>
+                <DnorGridItem
+                  colStart={1}
+                  colSpan={nestedGridControls.item1ColSpan}
+                  rowStart={1}
+                  rowSpan={2}
+                >
+                  <div className="sub-grid-item">
+                    <span className="item-title">Grid Item 1</span>
+                    <span className="item-desc">Responsive grid system</span>
+                  </div>
+                </DnorGridItem>
+                <DnorGridItem
+                  colStart={1}
+                  colSpan={nestedGridControls.item2ColSpan}
+                  rowStart={3}
+                  rowSpan={2}
+                >
+                  <div className="sub-grid-item">
+                    <span className="item-title">Grid Item 2</span>
+                    <span className="item-desc">Flexible layouts</span>
+                  </div>
+                </DnorGridItem>
+                <DnorGridItem
+                  colStart={nestedGridControls.item2ColSpan + 1}
+                  colSpan={nestedGridControls.item3ColSpan}
+                  rowStart={3}
+                  rowSpan={2}
+                >
+                  <div className="sub-grid-item">
+                    <span className="item-title">Grid Item 3</span>
+                    <span className="item-desc">Dynamic sizing</span>
+                  </div>
+                </DnorGridItem>
+              </DnorGrid>
             </DnorCard>
           </DnorGridItem>
           <DnorGridItem
-            colStart={8}
+            colStart={gridControls.mainCardColSpan + 1}
             colSpan={gridControls.buttonColSpan}
-            rowStart={3}
-            rowSpan={4}
+            rowStart={gridControls.buttonRowStart}
+            rowSpan={3}
           >
             <DnorButton
-              title="Click me i'm a dnor button"
+              title={componentControls.buttonTitle}
               variant={
                 componentControls.buttonVariant as
                   | "primary-filled"
@@ -156,6 +161,11 @@ function App() {
                   | "huge"
               }
             ></DnorButton>
+          </DnorGridItem>
+          <DnorGridItem colStart={1} colSpan={12} rowStart={6} rowSpan={1}>
+            <footer className="App-footer">
+              <p>DNOR Web Components library footer</p>
+            </footer>
           </DnorGridItem>
         </DnorGrid>
       </main>
