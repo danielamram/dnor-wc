@@ -5,6 +5,7 @@
   "dependencies": {
     "@testing-library/react": "^16.2.0",
     "cra-template-typescript": "1.2.0",
+    "leva": "^0.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
